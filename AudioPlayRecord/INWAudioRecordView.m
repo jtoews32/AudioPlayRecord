@@ -2,8 +2,6 @@
 
 @implementation INWAudioRecordView
 
-
-
 - (instancetype)initWithFrame:(CGRect)frame
 {
     
@@ -90,19 +88,8 @@
         //  _pauseButton.enabled = NO;
         //  _saveButton.enabled = NO;
         
-        
-        
-        // NSFileManager *fileManager = [NSFileManager defaultManager];
-        // NSString *docsDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        
-        
-       //  NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        // NSString *docsDir = dirPaths[0];
-        
-        
-        
         NSString *docsDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-        NSString *soundFilePath = [docsDir stringByAppendingPathComponent:@"therapydailyAudio.m4a"];
+        NSString *soundFilePath = [docsDir stringByAppendingPathComponent:@"audio.m4a"];
         NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
 
         NSDictionary *recordSettings = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -111,25 +98,6 @@
                                         [NSNumber numberWithInt: 1], AVNumberOfChannelsKey,
                                         [NSNumber numberWithFloat:8000.0], AVSampleRateKey,
                                         nil];
-        
-        
-        
-        /*
-        
-        NSDictionary *recordSettings = [NSDictionary
-                                        dictionaryWithObjectsAndKeys:
-                                        [NSNumber numberWithInt:AVAudioQualityMin],
-                                        AVEncoderAudioQualityKey,
-                                        [NSNumber numberWithInt:16],
-                                        AVEncoderBitRateKey,
-                                        [NSNumber numberWithInt: 2],
-                                        AVNumberOfChannelsKey,
-                                        [NSNumber numberWithFloat:44100.0],
-                                        AVSampleRateKey,
-                                        nil];
-        
-         */
-        
         
         NSError *error = nil;
         
@@ -282,9 +250,6 @@
     
 }
 
-
-
-
 -(void)pauseButtonHit:(id)sender {
  
     
@@ -310,61 +275,17 @@
         
         [_audioPlayer play];
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
 }
 
 -(void)playButtonHit:(id)sender {
-    
 
-    
-    
-    /*
-     
-
-     
-     
-     
-    if (_audioPlayer.) { // if is paused
-        
-        [_pauseButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [_pauseButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-        
-        [_playButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_playButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-        
-        
-        [_audioPlayer pause];
-        
-    } else {
-        
-        [_playButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [_playButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
-        
-        [_pauseButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_pauseButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
-        
-        
-        [_audioPlayer play];
-    }
-    */
-    
-    
     
     if (_audioRecorder.recording || _audioPlayer.playing || _playButton.titleLabel.textColor == [UIColor whiteColor]) {
         return;
         
     }
-    
-    
-    
+
     [_stopButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_stopButton setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
     
@@ -468,8 +389,7 @@
         NSString *fileName = [NSString stringWithFormat:@"%@%@%@%@", audioName, @"_", intervalString, @".m4a"];
         NSString *button = [alertView buttonTitleAtIndex:buttonIndex];
         if ([button isEqualToString:@"Save"]){
-            // HANDLE SAVE
-            NSLog(@"SAVE BUTTON");
+
             NSFileManager *fileManager = [NSFileManager defaultManager];
             NSString *docsDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
             NSString *currentPath = [docsDir  stringByAppendingPathComponent:@"therapydailyAudio.m4a"];
@@ -477,18 +397,6 @@
             [fileManager moveItemAtPath:currentPath toPath:newPath error:nil];
             NSNumber *category = [NSNumber numberWithInt:1];
             
-            /*
-             NSDictionary *audioRecording = [[[INWAppDelegate get] getModelController] getModelElement:@"audioRecording"];
-             
-             NSString *title = [audioRecording objectForKey:@"title"];
-             NSString *screen = [audioRecording objectForKey:@"screen"];
-             NSString *nextView =[audioRecording objectForKey:@"nextView"];
-             [audioRecording setValue:newPath forKey:@"filePath"];
-             [audioRecording setValue:fileName forKey:@"fileName"];
-             //marcelo
-             [[INWAppDelegate get] addActivity:@"audio.png" andTitle:title andMessage:audioName andScreen:screen andCategory:category andDetails:audioRecording];
-             [[INWAppDelegate get] pushView:nextView isNewRoot:false];
-             */
         }
         
         

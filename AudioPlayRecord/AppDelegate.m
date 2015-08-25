@@ -21,15 +21,16 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
     CGRect frame = [self.window frame];
-    // myView = [[INWAudioRecordView alloc] initWithFrame:frame];
+    myView = [[INWAudioRecordView alloc] initWithFrame:frame];
     
     /*
     test_1440358600433.102051.m4a
     test_3_1440358795015.395020.m4a
+
+    myView = [[INWAudioRecordView alloc] initWithFrame:frame audioFilename:@"test_3_1440358795015.395020.m4a"];
+    
     */
-    
-    myView = [[INWAudioPlayerView alloc] initWithFrame:frame audioFilename:@"test_3_1440358795015.395020.m4a"];
-    
+
     [self.window addSubview:myView];
     [self.window makeKeyAndVisible];
     return YES;

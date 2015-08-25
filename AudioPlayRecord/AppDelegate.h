@@ -14,8 +14,9 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-//@property (strong, nonatomic) INWAudioRecordView *myView;
-@property (strong, nonatomic) INWAudioPlayerView *myView;
+// @property (strong, nonatomic) INWAudioRecordView *myView;
+@property (strong, nonatomic) INWAudioRecordView *myView;
+
 
 
 @end
